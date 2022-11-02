@@ -2,7 +2,36 @@
   text-align: center;
 }
 
-.App-logo {
+body {
+  background-color: skyblue;
+}
+
+p {
+  font-size: 16pt;
+}
+
+.NavBar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  right: 0;
+  height: 50pt;
+  background-color: #d3d3d3;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.invoice {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 50%;
+  /* display: block; */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -35,4 +64,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
