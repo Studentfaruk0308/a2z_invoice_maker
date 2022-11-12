@@ -1,30 +1,35 @@
+import Config from '../config'
+
 async function getInvoiceList(){
-    const response = await fetch('http://localhost:3000/invoices');
+    const response = await fetch(`${Config.baseURL}/invoices`);
     return response.json();
-    }
+}
     
-    export {getInvoiceList}
+export {getInvoiceList}
 
+async function getInvoice(id){
+  const response = await fetch(`${Config.baseURL}/invoices/${id}`);
+  return response.json();
+}
+  
+export {getInvoice}
 
-
-
-async function saveInvoice(InvoiceCard){
-    fetch("http://localhost:3000/invoices",{
+async function createInvoice(invoiceData){
+    const response = await fetch(`${Config.baseURL}/invoices`,{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
-      body: JSON.stringify(InvoiceCard)
+      body: JSON.stringify(invoiceData)
     })
+    return response.json()
 }
 
-export {saveInvoice}
-
-
+export {createInvoice}
 
 async function updateInvoice(selectedInvoiceId, InvoiceCard){
-    return fetch(`http://localhost:3000/invoices/${selectedInvoiceId}`,{
+    return fetch(`${Config.baseURL}/invoices/${selectedInvoiceId}`,{
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
