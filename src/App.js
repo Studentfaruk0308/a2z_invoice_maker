@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import Footer from './components/Footer';
@@ -10,8 +10,7 @@ import InvoiceDetails from './containers/InvoiceDetails';
 import InvoiceCreate from './containers/InvoiceCreate'
 import Clients from './containers/Clients';
 import ClientCreate from './containers/ClientCreate';
-import Profiles from './containers/Profiles';
-
+import ProfileDetails from './containers/ProfileDetails';
 
 function App() {
   const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
@@ -44,7 +43,8 @@ function App() {
         <Route exact path="/clients" element={<Clients />} />
         <Route exact path="/clients/create" element={<ClientCreate />} />
 
-        <Route exact path="/profiles" element={<Profiles />} />
+        <Route exact path="/profile" element={<ProfileDetails />} />
+        <Route exact path="/profiles/create" element={<ProfileDetails />} />
       </Routes>
       <Footer />
     </div>

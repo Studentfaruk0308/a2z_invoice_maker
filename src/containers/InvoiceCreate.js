@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import {useNavigate} from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
 
 import { createInvoice } from '../api/InvoicesApi'
 
 export default function InvoiceCreate(props) {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
+  const { user } = useAuth0();
 
   const onSubmit = data => {
     console.log(data)
-    const response = createInvoice(data);
+    const response = createInvoice({...data, profile_id: user.sub.slice(6)});
 
     if (response.error) {
       alert(response.error)
@@ -79,33 +81,15 @@ export default function InvoiceCreate(props) {
       </div>
 
       <div className={`${inputContainerStyle}`}>
-        <p className={`${inputHeaderStyle}`}>Sum Amount</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="number" step=".01" placeholder="Sum Amount" {...register("sum_amount", {required: "Sum Amount is required", valueAsNumber: true, min: {value: 0, message: "Must not be negative"}})}  />
-        {errors.sum_amount && <p className={`${errorStyle}`} role="alert">{errors.sum_amount?.message}</p>}
-      </div>
-
-      <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Tax Amount</p>
         <input className={`${errorInputStyle} ${inputStyle}`} type="number" step=".01" placeholder="Tax" {...register("tax", {required: "Tax Amount is required", valueAsNumber: true, min: {value: 0, message: "Must not be negative"}})}  />
         {errors.tax && <p className={`${errorStyle}`} role="alert">{errors.tax?.message}</p>}
       </div>
 
       <div className={`${inputContainerStyle}`}>
-        <p className={`${inputHeaderStyle}`}>Total Amount</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="number" step=".01" placeholder="Total Amount" {...register("total_amount", {required: "Total Amount is required", valueAsNumber: true, min: {value: 0, message: "Must not be negative"}})}  />
-        {errors.total_amount && <p className={`${errorStyle}`} role="alert">{errors.total_amount?.message}</p>}
-      </div>
-
-      <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Paid Amount</p>
         <input className={`${errorInputStyle} ${inputStyle}`} type="number" step=".01" placeholder="Paid Amount" {...register("paid_amount", {required: "Paid Amount is required", valueAsNumber: true, min: {value: 0, message: "Must not be negative"}})}  />
         {errors.paid_amount && <p className={`${errorStyle}`} role="alert">{errors.paid_amount?.message}</p>}
-      </div>
-
-      <div className={`${inputContainerStyle}`}>
-        <p className={`${inputHeaderStyle}`}>Due Amount</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="number" step=".01" placeholder="Due Amount" {...register("due_amount", {required: "Due Amount is required", valueAsNumber: true, min: {value: 0, message: "Must not be negative"}})}  />
-        {errors.due_amount && <p className={`${errorStyle}`} role="alert">{errors.due_amount?.message}</p>}
       </div>
 
       <input type="submit" className="bg-white rounded-xl px-4 py-2 mt-4 active:bg-slate-700" />

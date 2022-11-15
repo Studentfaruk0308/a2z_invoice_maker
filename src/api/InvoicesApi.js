@@ -4,15 +4,16 @@ async function getInvoiceList(){
     const response = await fetch(`${Config.baseURL}/invoices`);
     return response.json();
 }
-    
 export {getInvoiceList}
+
+
 
 async function getInvoice(id){
   const response = await fetch(`${Config.baseURL}/invoices/${id}`);
   return response.json();
 }
-  
 export {getInvoice}
+
 
 async function createInvoice(invoiceData){
     const response = await fetch(`${Config.baseURL}/invoices`,{
@@ -25,8 +26,9 @@ async function createInvoice(invoiceData){
     })
     return response.json()
 }
-
 export {createInvoice}
+
+
 
 async function updateInvoice(selectedInvoiceId, InvoiceCard){
     return fetch(`${Config.baseURL}/invoices/${selectedInvoiceId}`,{
@@ -38,7 +40,6 @@ async function updateInvoice(selectedInvoiceId, InvoiceCard){
       body: JSON.stringify(InvoiceCard)
     })
   }
-  
   export {updateInvoice}
 
 
@@ -51,5 +52,4 @@ async function updateInvoice(selectedInvoiceId, InvoiceCard){
     }).then(res => res.json())
     .then(data => data);
   }
-  
   export {deleteInvoice}

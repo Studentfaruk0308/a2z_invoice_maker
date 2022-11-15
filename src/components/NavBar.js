@@ -8,9 +8,9 @@ const NavBar = () => {
 
   return (
     <div className='flex justify-center w-full bg-slate-300 flex items-center border-b-4'>
-        <NavLink className="px-8 bg-slate-300 hover:bg-slate-200 h-16 py-5" to="/Invoices">INVOICES</NavLink>
-        <NavLink className="px-8 bg-slate-300 hover:bg-slate-200 h-16 py-5" to="/Clients">CLIENTS</NavLink>
-        <NavLink className="px-8 bg-slate-300 hover:bg-slate-200 h-16 py-5" to="/Profile">PROFILE</NavLink>
+        <NavLink className="px-8 bg-slate-300 hover:bg-slate-200 h-16 py-5" to="/invoices">INVOICES</NavLink>
+        <NavLink className="px-8 bg-slate-300 hover:bg-slate-200 h-16 py-5" to="/clients">CLIENTS</NavLink>
+        <NavLink className="px-8 bg-slate-300 hover:bg-slate-200 h-16 py-5" to="/profile">PROFILE</NavLink>
         <button className="px-8 bg-slate-300 hover:bg-slate-200 h-16 py-5" onClick={() => {
           logout()
         }}>LOGOUT</button>

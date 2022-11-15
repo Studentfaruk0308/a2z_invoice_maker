@@ -8,7 +8,7 @@ export function getClientsList(){
     )
 }
 
-async function getClient(id){
+async function getClient(id) {
     const response = await fetch(`${Config.baseURL}/clients/${id}`);
     return response.json();
   }
