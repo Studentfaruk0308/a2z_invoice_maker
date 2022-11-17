@@ -2,6 +2,9 @@ import Config from '../config'
 
 async function getProfile(id){
     const response = await fetch(`${Config.baseURL}/profiles/${id}`);
+    if (response.status !== 200) {
+      return null;
+    }
     return response.json();
   }
   export {getProfile}

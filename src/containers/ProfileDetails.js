@@ -18,6 +18,7 @@ export default function ProfileCreate(props) {
     const fetchData = async () => {
       const data = await getProfile(user.sub.slice(6));
       setProfileData(data)
+      console.warn(data)
       setLoading(false)
     }
     fetchData()
@@ -25,12 +26,12 @@ export default function ProfileCreate(props) {
 
   const onSubmit = data => {
     let response;
-    if (profileData) {
-      const response = createProfile({...data, id: user.sub.slice(6)});
+    console.warn("TEST", profileData)
+    if (!profileData) {
+      response = createProfile({...data, id: user.sub.slice(6)});
     } else {
       response = updateProfile(user.sub.slice(6), data);
     }
-
 
     if (response.error) {
       alert(response.error)
@@ -56,43 +57,43 @@ export default function ProfileCreate(props) {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Profile Name</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="text" placeholder="" value={profileData.profile_name ?? ""} {...register("profile_name", {required: "Profile Name is required"})}  />
+        <input className={`${errors.profile_name && errorInputStyle} ${inputStyle}`} type="text" placeholder="" defaultValue={profileData?.profile_name ?? ""} {...register("profile_name", {required: "Profile Name is required"})}  />
         {errors.profile_name && <p className={`${errorStyle}`} role="alert">{errors.profile_name?.message}</p>}
       </div>
 
       <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Company Name</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="text" placeholder="" value={profileData.company_name ?? ""} {...register("company_name", {required: "Company Name is required"})}  />
-        {errors.compamny_name && <p className={`${errorStyle}`} role="alert">{errors.compamny_name?.message}</p>}
+        <input className={`${errors.company_name && errorInputStyle} ${inputStyle}`} type="text" placeholder="" defaultValue={profileData?.company_name ?? ""} {...register("company_name", {required: "Company Name is required"})}  />
+        {errors.company_name && <p className={`${errorStyle}`} role="alert">{errors.company_name?.message}</p>}
       </div>
 
       <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Address</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="text" placeholder="" value={profileData.address ?? ""} {...register("address", {required: "address is required"})}  />
+        <input className={`${errors.address && errorInputStyle} ${inputStyle}`} type="text" placeholder="" defaultValue={profileData?.address ?? ""} {...register("address", {required: "address is required"})}  />
         {errors.address && <p className={`${errorStyle}`} role="alert">{errors.address?.message}</p>}
       </div>
 
       <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>ABN</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="text" placeholder="" value={profileData.abn ?? ""} {...register("abn", {required: "ABN is required"})}  />
+        <input className={`${errors.abn && errorInputStyle} ${inputStyle}`} type="text" placeholder="" defaultValue={profileData?.abn ?? ""} {...register("abn", {required: "ABN is required"})}  />
         {errors.abn && <p className={`${errorStyle}`} role="alert">{errors.abn?.message}</p>}
       </div>
 
       <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Email</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="text" placeholder="" value={profileData.email ?? ""} {...register("email", {required: "Email is required"})}  />
+        <input className={`${errors.email && errorInputStyle} ${inputStyle}`} type="text" placeholder="" defaultValue={profileData?.email ?? ""} {...register("email", {required: "Email is required", pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/})}  />
         {errors.email && <p className={`${errorStyle}`} role="alert">{errors.email?.message}</p>}
       </div>
 
       <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Contact Number</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="text" placeholder="" value={profileData.contact_number ?? ""} {...register("contact_number", {required: "Contact Number is required"})}  />
+        <input className={`${errors.contact_number && errorInputStyle} ${inputStyle}`} type="text" placeholder="" defaultValue={profileData?.contact_number ?? ""} {...register("contact_number", {required: "Contact Number is required"})}  />
         {errors.contact_number && <p className={`${errorStyle}`} role="alert">{errors.contact_number?.message}</p>}
       </div>
 
       <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Bank Details</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="text" placeholder="" value={profileData.bank_details ?? ""} {...register("bank_details", {required: "Bank Details is required"})}  />
+        <input className={`${errors.bank_details && errorInputStyle} ${inputStyle}`} type="text" placeholder="" defaultValue={profileData?.bank_details ?? ""} {...register("bank_details", {required: "Bank Details is required"})}  />
         {errors.bank_details && <p className={`${errorStyle}`} role="alert">{errors.bank_details?.message}</p>}
       </div>
       

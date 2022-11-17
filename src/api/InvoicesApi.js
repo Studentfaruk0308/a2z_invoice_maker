@@ -1,7 +1,11 @@
 import Config from '../config'
 
-async function getInvoiceList(){
-    const response = await fetch(`${Config.baseURL}/invoices`);
+async function getInvoiceList(userId){
+    const response = await fetch(`${Config.baseURL}/invoices`, {
+      headers: {
+        "Authorization": `${userId}`
+      }
+    });
     return response.json();
 }
 export {getInvoiceList}
@@ -24,7 +28,6 @@ async function createInvoice(invoiceData){
       },
       body: JSON.stringify(invoiceData)
     })
-    return response.json()
 }
 export {createInvoice}
 

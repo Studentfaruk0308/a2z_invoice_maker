@@ -34,61 +34,61 @@ export default function InvoiceCreate(props) {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>CLIENT ID</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="text" placeholder="Client ID" {...register("client_id", {required: "Client ID is required"})}  />
+        <input className={`${errors.client_id && errorInputStyle} ${inputStyle}`} type="text" placeholder="Client ID" {...register("client_id", {required: "Client ID is required"})}  />
         {errors.client_id && <p className={`${errorStyle}`} role="alert">{errors.client_id?.message}</p>}
       </div>
 
       <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Invoice Number</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="text" placeholder="Invoice Number" {...register("inv_number", {required: "Invoice Number is required"})}  />
+        <input className={`${errors.inv_number && errorInputStyle} ${inputStyle}`} type="text" placeholder="Invoice Number" {...register("inv_number", {required: "Invoice Number is required"})}  />
         {errors.inv_number && <p className={`${errorStyle}`} role="alert">{errors.inv_number?.message}</p>}
       </div>
 
       <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Date of Issue</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="date" placeholder="Date of Issue" {...register("date_of_issue", {required: "Date of Issue is required", valueAsDate: true})}  />
+        <input className={`${errors.date_of_issue && errorInputStyle} ${inputStyle}`} type="date" placeholder="Date of Issue" {...register("date_of_issue", {required: "Date of Issue is required", valueAsDate: true})}  />
         {errors.date_of_issue && <p className={`${errorStyle}`} role="alert">{errors.date_of_issue?.message}</p>}
       </div>
 
       <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Due Date</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="date" placeholder="Due Date" {...register("due_date", {required: "Due Date is required", valueAsDate: true})}  />
+        <input className={`${errors.due_date && errorInputStyle} ${inputStyle}`} type="date" placeholder="Due Date" {...register("due_date", {required: "Due Date is required", valueAsDate: true})}  />
         {errors.due_date && <p className={`${errorStyle}`} role="alert">{errors.due_date?.message}</p>}
       </div>
 
       <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Job Reference</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="text" placeholder="Job Reference" {...register("job_reference", {required: "Job Reference is required"})}  />
+        <input className={`${errors.job_reference && errorInputStyle} ${inputStyle}`} type="text" placeholder="Job Reference" {...register("job_reference", {required: "Job Reference is required"})}  />
         {errors.job_reference && <p className={`${errorStyle}`} role="alert">{errors.job_reference?.message}</p>}
       </div>
 
       <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Description</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="text" placeholder="Job Description" {...register("description", {required: "Job Description is required"})}  />
+        <input className={`${errors.description && errorInputStyle} ${inputStyle}`} type="text" placeholder="Job Description" {...register("description", {required: "Job Description is required"})}  />
         {errors.description && <p className={`${errorStyle}`} role="alert">{errors.description?.message}</p>}
       </div>
 
       <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Quantity</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="number" placeholder="Quantity" {...register("quantity", {required: "Quantity is required", valueAsNumber: true, min: {value: 0, message: "Must not be negative"}})}  />
+        <input className={`${errors.quantity && errorInputStyle} ${inputStyle}`} type="number" placeholder="Quantity" {...register("quantity", {required: "Quantity is required", valueAsNumber: true, min: {value: 0, message: "Must not be negative"}})}  />
         {errors.quantity && <p className={`${errorStyle}`} role="alert">{errors.quantity?.message}</p>}
       </div>
 
       <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Unit Price</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="number" step=".01" placeholder="Unit Price" {...register("unit_price", {required: "Unit Price is required", valueAsNumber: true, min: {value: 0, message: "Must not be negative"}})}  />
+        <input className={`${errors.unit_price && errorInputStyle} ${inputStyle}`} type="number" step=".01" placeholder="Unit Price" {...register("unit_price", {required: "Unit Price is required", valueAsNumber: true, min: {value: 0, message: "Must not be negative"}})}  />
         {errors.unit_price && <p className={`${errorStyle}`} role="alert">{errors.unit_price?.message}</p>}
       </div>
 
       <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Tax Amount</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="number" step=".01" placeholder="Tax" {...register("tax", {required: "Tax Amount is required", valueAsNumber: true, min: {value: 0, message: "Must not be negative"}})}  />
+        <input className={`${errors.tax && errorInputStyle} ${inputStyle}`} type="number" step=".01" placeholder="Tax" {...register("tax", {required: "Tax Amount is required", valueAsNumber: true, min: {value: 0, message: "Must not be negative"}})}  />
         {errors.tax && <p className={`${errorStyle}`} role="alert">{errors.tax?.message}</p>}
       </div>
 
       <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Paid Amount</p>
-        <input className={`${errorInputStyle} ${inputStyle}`} type="number" step=".01" placeholder="Paid Amount" {...register("paid_amount", {required: "Paid Amount is required", valueAsNumber: true, min: {value: 0, message: "Must not be negative"}})}  />
+        <input className={`${errors.paid_amount && errorInputStyle} ${inputStyle}`} type="number" step=".01" placeholder="Paid Amount" {...register("paid_amount", {required: "Paid Amount is required", valueAsNumber: true, min: {value: 0, message: "Must not be negative"}})}  />
         {errors.paid_amount && <p className={`${errorStyle}`} role="alert">{errors.paid_amount?.message}</p>}
       </div>
 
