@@ -36,8 +36,7 @@ export default function Invoices() {
       <table>
         <thead>
             <tr className='h-12 border-b-4 border-b-slate-400'>
-                <th className="w-64">INVOICE ID</th>
-                <th className="w-64">PROFILE ID</th>                               
+                <th className="w-64">INVOICE ID</th>                       
                 <th className="w-64">INVOICE NUMBER</th>
                 <th className="w-64">CLIENT ID</th>
                 <th className="w-64">DATE OF ISSUE</th>
@@ -51,14 +50,13 @@ export default function Invoices() {
                 <th className="w-64">TOTAL AMOUNT</th>
                 <th className="w-64">PAID</th>
                 <th className="w-64">DUE AMOUNT</th>
-                <th className="w-64">VIEW</th>
+                <th className="w-64">OPTIONS</th>
             </tr>
         </thead>
         <tbody>
             {Invoicedata.map(i => 
                 <tr className="odd:bg-white h-12 text-center" key={i.id}>
                     <td className="w-64">{i.id}</td>
-                    <td className="w-64">{i.profile_id}</td>
                     <td className="w-64">{i.inv_number}</td>
                     <td className="w-64">{i.client_id}</td>
                     <td className="w-64">{(new Date(i.date_of_issue))?.toLocaleDateString('en-GB')}</td>
@@ -72,7 +70,10 @@ export default function Invoices() {
                     <td className="w-64">${(i.quantity*i.unit_price + i.quantity*i.unit_price*(i.tax/100)).toFixed(2)}</td> 
                     <td className="w-64">${i.paid_amount.toFixed(2)}</td> 
                     <td className="w-64">${(i.quantity*i.unit_price + i.quantity*i.unit_price*(i.tax/100) - i.paid_amount).toFixed(2)}</td> 
-                    <td className="w-64"><button className="px-4 bg-slate-500 py-2 rounded-xl m-4 text-white active:bg-slate-700" onClick={() => navigate(`/invoices/${i.id}`)}>View</button></td>  
+                    <td className="w-42 flex p-4 content-center justify-center">
+                        <button className="px-4 bg-slate-500 py-2 rounded-l-lg text-white active:bg-slate-700 border-r-2 border-gray-400" onClick={() => navigate(`/invoices/${i.id}`)}>View</button>
+                        <button className="px-4 bg-slate-500 py-2 rounded-r-lg text-white active:bg-slate-700" onClick={() => navigate(`/invoices/${i.id}/edit`)}>Edit</button>
+                    </td>  
                 </tr>
             )}
         </tbody>

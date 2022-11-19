@@ -7,10 +7,11 @@ import NavBar from './components/NavBar';
 
 import Invoices from './containers/Invoices';
 import InvoiceDetails from './containers/InvoiceDetails';
-import InvoiceCreate from './containers/InvoiceCreate'
+import InvoiceCreate from './containers/InvoiceCreate';
+import InvoiceEdit from './containers/InvoiceEdit';
 import Clients from './containers/Clients';
 import ClientCreate from './containers/ClientCreate';
-import ProfileDetails from './containers/ProfileDetails';
+import ProfileEdit from './containers/ProfileEdit';
 
 function App() {
   const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
@@ -39,12 +40,12 @@ function App() {
         <Route exact path="/invoices" element={<Invoices />} />
         <Route exact path="/invoices/create" element={<InvoiceCreate />} />
         <Route path="/invoices/:invoiceid" element={<InvoiceDetails />} />
+        <Route path="/invoices/:invoiceid/Edit" element={<InvoiceEdit />} />
 
         <Route exact path="/clients" element={<Clients />} />
         <Route exact path="/clients/create" element={<ClientCreate />} />
 
-        <Route exact path="/profile" element={<ProfileDetails />} />
-        <Route exact path="/profiles/create" element={<ProfileDetails />} />
+        <Route exact path="/profile" element={<ProfileEdit />} />
       </Routes>
       <Footer />
     </div>

@@ -6,7 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import { getProfile, createProfile, updateProfile } from '../api/ProfilesApi'
 
-export default function ProfileCreate(props) {
+export default function ProfileEdit(props) {
   const [profileData, setProfileData] = useState();
   const [loading, setLoading] = useState(true);
   const { user } = useAuth0();
@@ -18,7 +18,6 @@ export default function ProfileCreate(props) {
     const fetchData = async () => {
       const data = await getProfile(user.sub.slice(6));
       setProfileData(data)
-      console.warn(data)
       setLoading(false)
     }
     fetchData()

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 
-import { useParams } from 'react-router-dom'
 import { getInvoice } from '../api/InvoicesApi'
 import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
+import { useParams, useNavigate} from 'react-router-dom';
 
 export default function InvoiceDetails(props) {
   const [invoiceData, setInvoiceData] = useState();
   const [loading, setLoading] = useState(true);
-
+  
+  const navigate = useNavigate();
   const {invoiceid} = useParams();
   const printingRef = useRef();
 
@@ -142,7 +143,10 @@ export default function InvoiceDetails(props) {
               </div>
           </div>
 
+          
+
               <div className='mb-12 mx-12'>
+              <button className="bg-white rounded-xl px-4 py-2 mt-4 active:bg-slate-700 mr-4" onClick={() => navigate(`/invoices/${invoiceData.id}/edit`)}>Edit</button>
               <button className="bg-white rounded-xl px-4 py-2 mt-4 active:bg-slate-700 mr-4" onClick={printInvoice}>Print Invoice</button>
                 <button className="bg-white rounded-xl px-4 py-2 mt-4 active:bg-slate-700" onClick={sendInvoice}>Send Invoice</button>
               </div>
