@@ -5,7 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { getInvoiceList } from '../api/InvoicesApi'
 
 import PieChartPaid from '../components/charts/PieChartPaid';
-import BarChartPaid from '../components/charts/BarChartPaid';
+import BarChartSummary from '../components/charts/BarChartSummary';
 import BarChartRecent from '../components/charts/BarChartRecent';
 
 export default function Invoices() {
@@ -40,7 +40,7 @@ export default function Invoices() {
 
         <div className='bg-slate-300 m-50 w-96 h-96 rounded-lg p-4 m-4 pb-12'>
             <h3 className='font-semibold text-lg pb-4 text-center'>Funds Summary</h3>
-            <BarChartPaid invoices={invoiceData}/>
+            <BarChartSummary invoices={invoiceData}/>
         </div>
     </div>
   )

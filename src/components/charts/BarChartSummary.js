@@ -1,8 +1,7 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import {
   BarChart,
   Bar,
-  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -10,9 +9,10 @@ import {
   Legend,
   ReferenceLine,
   ResponsiveContainer,
+
 } from 'recharts';
 
-export default function BarChartPaid({invoices}) {
+export default function BarChartSummary({invoices}) {
     // Find number of invoices that are fully paid, eg 5 out of 10
     const paidData = invoices.reduce((accu, curr) => {
         const unit_price = curr.unit_price ?? 0;
@@ -33,27 +33,30 @@ export default function BarChartPaid({invoices}) {
       {
         name: 'Total Amount',
        value: paidData.total_amount,
+       fill: "#8884d8",
       },
       {
         name: 'Paid Amount',
         value: paidData.paid_amount,
+        fill: "#14F183"
       },
       {
         name: 'Due Amount',
         value: paidData.due_amount,
+        fill: "#FF0003"
       },
     ];
 
     return (
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="120%" height="100%">
         <BarChart
           width={500}
           height={300}
           data={data}
           margin={{
             top: 5,
-            right: 30,
-            left: 20,
+            right: 50,
+            left: 5,
             bottom: 5,
           }}
         >
@@ -63,7 +66,7 @@ export default function BarChartPaid({invoices}) {
           <Tooltip />
           <Legend />
           <ReferenceLine y={0} stroke="#000" />
-          <Bar dataKey="value" fill="#8884d8" />
+          <Bar dataKey="value"/>
         </BarChart>
       </ResponsiveContainer>
     );

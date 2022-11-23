@@ -4,8 +4,6 @@ import { useParams, useNavigate} from 'react-router-dom';
 
 import { getClient, updateClient } from '../api/ClientsApi'
 
-import { editClient } from '../api/ClientsApi'
-
 export default function ClientEdit(props) {
   const [clientData, setClientData] = useState();
   const [loading, setLoading] = useState(true);

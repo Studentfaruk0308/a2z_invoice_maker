@@ -14,7 +14,7 @@ export default function BarChartRecent({invoices}) {
         const due_amount = total_amount - paid_amount
 
         return {
-            name: i.inv_number,
+            name: i.id,
             paidAmount: paid_amount,
             dueAmount: due_amount,
         }
