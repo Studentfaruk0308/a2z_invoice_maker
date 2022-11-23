@@ -2,16 +2,6 @@
 
 This application is the frontend part of "a2z_invoice_maker" web app.
 
-## Table of Contents
-# Objectives
-# System Requirements
-# How to Setup
-# Usage
-# License
-# Terms & Conditions
-
-
-
 # Objectives
 * a2z_Invoice_Maker is a web application to generate invoices for client from a Company.
 
@@ -26,7 +16,7 @@ Following is the ideal system requirements to run the applicaiton smoothly:
 # How to Setup (Frontend)
 * Fork the Repository to your Github Account.
 * Then clone the repisotry yo your local machine.
-* Then in the local machiine go to this directory by typing: cd A2Z_INVOICE_MAKER
+* Then in the local machine go to this directory by typing: cd A2Z_INVOICE_MAKER
 * Then type: 'npm install' to initialize the local machine.
 * Follow below steps for Auth0 Setup:
 > Create an account in 'https://auth0.com/'

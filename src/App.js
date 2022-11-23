@@ -34,7 +34,7 @@ function App() {
   }
 
     return (
-      <div className="min-h-screen flex flex-col bg-sky-500">
+      <div className="min-h-screen flex flex-col bg-sky-200">
         <h1 className="text-4xl font-bold py-12 text-center"><a href="#" onClick={() => navigate('/')}>A2Z INVOICE GENERATOR</a></h1>
         <NavBar />
         <Routes>
