@@ -16,7 +16,7 @@ export default function PieChartPaid({invoices}) {
         const sum_amount = unit_price * quantity
         const total_amount = sum_amount + sum_amount * (tax/100)
         const due_amount = total_amount - paid_amount
-        return accu + (due_amount <= 0) ? 1 : 0
+        return accu + (due_amount <= 0) ?? 0
     }, 0);
 
     const data = [
