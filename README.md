@@ -1,3 +1,69 @@
+# A2Z INVOICE MAKER (Frontend)
+
+This application is the frontend part of "a2z_invoice_maker" web app.
+
+## Table of Contents
+# Objectives
+# System Requirements
+# How to Setup
+# Usage
+# License
+# Terms & Conditions
+
+
+
+# Objectives
+* a2z_Invoice_Maker is a web application to generate invoices for client from a Company.
+
+# System Requirements
+Following is the ideal system requirements to run the applicaiton smoothly:
+* node v16.15.0
+* npm 8.10.0
+* React v18.2.0
+* ruby 2.6.1p33
+* Rails 6.1.7
+
+# How to Setup (Frontend)
+* Fork the Repository to your Github Account.
+* Then clone the repisotry yo your local machine.
+* Then in the local machiine go to this directory by typing: cd A2Z_INVOICE_MAKER
+* Then type: 'npm install' to initialize the local machine.
+* Follow below steps for Auth0 Setup:
+> Create an account in 'https://auth0.com/'
+> Create an Application and get Client ID.
+> Create a .env file in the root directory that exports the DOMAIN & CLIENT ID as per below example:
+        - REACT_APP_AUTH0_DOMAIN=<Domain Name goes here>
+        - REACT_APP_AUTH0_CLIENT_ID=<Client ID goes here>
+> Add this file in .gitignore in the root directory to prevent the above two details being exposed to others in the Github Repository. 
+* Then type: 'npm start' to start the application and view it in your browser.
+* This frontend application will start in 'http://localhost:3010' by default.
+
+
+# Usage (All the UI will be from Frontend)
+* As a first time user you need to create an account by Logging in to this application.
+* Create a Profile in 'Profile' Tab with your Company Details of the floowing:
+> Profile Name: This will not be displayed in the Invoice.
+> Company Name, Address, ABN, Email, Contact Number, Bank Details: All these fileds will be displayed in the invoice.
+> Please note only one Profile can be created. The profile can be updated if required. All invoices created by you will be linked to this Profile.
+* Create a Client in the 'Client' Tab to whom invoice will be issued. 
+* Create an Invoice in the 'Invoice" Tab.
+> Submitting a created invoice will send the invoice to the Client.
+> A created invoice can be viewed, edited, downloaded for printing or saving as pdf file or can be copied to create a new invoice.
+> All submitted invoice after creation or modification will eamil the invoice to the Client.
+
+# License
+Copyright (c) 2022 by Md Faruk Ahmed
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following Terms & Conditions:
+
+# Terms & Conditions
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +134,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+

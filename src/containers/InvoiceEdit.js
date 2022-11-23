@@ -2,20 +2,30 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { useParams, useNavigate} from 'react-router-dom';
 
-import { getInvoice, createInvoice, updateInvoice } from '../api/InvoicesApi'
+import { getInvoice, updateInvoice } from '../api/InvoicesApi'
+import { getClientsList } from '../api/ClientsApi'
 
 export default function InvoiceEdit(props) {
   const [invoiceData, setInvoiceData] = useState();
+  const [clientData, setClientData] = useState(null)
   const [loading, setLoading] = useState(true);
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, watch, handleSubmit, formState: { errors } } = useForm();
   const {invoiceid} = useParams();
   const navigate = useNavigate();
 
+  const unit_price = watch('unit_price') ?? 0;
+  const quantity = watch('quantity') ?? 1;
+  const tax = watch('tax') ?? 10
+  const paid_amount = watch('paid_amount') ?? 0
+  const sum_amount = unit_price * quantity
+  const total_amount = sum_amount + sum_amount * (tax/100)
+  const due_amount = total_amount - paid_amount
+
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getInvoice(invoiceid);
-      setInvoiceData(data)
+      setInvoiceData(await getInvoice(invoiceid))
+      setClientData(await getClientsList())
       setLoading(false)
     }
     fetchData()
@@ -43,12 +53,20 @@ export default function InvoiceEdit(props) {
 
   return (
     <div className="mx-auto bg-slate-300 pl-12 pr-56 py-12 rounded-lg my-4">
-    <h2 className="text-slate-800 text-3xl mb-6 font-semibold">Edit Invoice #{}</h2>   
+    <h2 className="text-slate-800 text-3xl mb-6 font-semibold">Edit Invoice #{invoiceid}</h2>
 
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={`${inputContainerStyle}`}>
-        <p className={`${inputHeaderStyle}`}>CLIENT ID</p>
-        <input className={`${errors.client_id && errorInputStyle} ${inputStyle}`} type="text" placeholder="Client ID" {...register("client_id", {required: "Client ID is required"})} defaultValue={invoiceData?.client_id ?? ""} />
+        <p className={`${inputHeaderStyle}`}>CLIENT</p>
+        <select 
+          className={`${errors.client_id && errorInputStyle} ${inputStyle}`} 
+          type="text" 
+          placeholder="Client ID" {...register("client_id", {required: "Client ID is required"})} 
+          defaultValue={invoiceData?.client_id ?? ""}>
+          {clientData.map(c => (
+            <option value={c.id}>{c.company_name}</option>
+          ))}
+        </select>
         {errors.client_id && <p className={`${errorStyle}`} role="alert">{errors.client_id?.message}</p>}
       </div>
 
@@ -95,9 +113,19 @@ export default function InvoiceEdit(props) {
       </div>
 
       <div className={`${inputContainerStyle}`}>
+        <p className={`${inputHeaderStyle}`}>Sum Amount</p>
+        <p>${sum_amount || "0"}</p>
+      </div>
+
+      <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Tax Amount</p>
         <input className={`${errors.tax && errorInputStyle} ${inputStyle}`} type="number" step=".01" placeholder="Tax" {...register("tax", {required: "Tax Amount is required", valueAsNumber: true, min: {value: 0, message: "Must not be negative"}})} defaultValue={invoiceData?.tax ?? ""} />
         {errors.tax && <p className={`${errorStyle}`} role="alert">{errors.tax?.message}</p>}
+      </div>
+
+      <div className={`${inputContainerStyle}`}>
+        <p className={`${inputHeaderStyle}`}>Total Amount</p>
+        <p>${total_amount || "0"}</p>
       </div>
 
       <div className={`${inputContainerStyle}`}>
@@ -106,8 +134,14 @@ export default function InvoiceEdit(props) {
         {errors.paid_amount && <p className={`${errorStyle}`} role="alert">{errors.paid_amount?.message}</p>}
       </div>
 
+      <div className={`${inputContainerStyle}`}>
+        <p className={`${inputHeaderStyle}`}>Due Amount</p>
+        <p>${due_amount || "0"}</p>
+      </div>
+
       <input type="submit" className="bg-white rounded-xl px-4 py-2 mt-4 active:bg-slate-700" />
     </form>
+    <p className="text-rose-600">Clicking Submit will email the invoice to Client</p>
     </div>
   )
 }

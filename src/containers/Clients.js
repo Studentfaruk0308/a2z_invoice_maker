@@ -6,18 +6,25 @@ import { getClientsList } from '../api/ClientsApi'
 
 export default function Clients() {
 const navigate = useNavigate();
-  const [Clientdata, setClientdata] = useState(null)
+const [clientData, setClientData] = useState(null)
+const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
       async function fetchClientData(){
           const data = await getClientsList()
-          console.log(data)
-          setClientdata(data)
+          setClientData(data)
+          setLoading(false)
       }
-          fetchClientData()
+      fetchClientData()
   }, [])
 
-  if (Clientdata === null){
+  if (loading) {
+    return <p>LOADING...</p>
+  }
+  
+
+  if (clientData === null){
       return<div>
           <h1>
               NO CLIENT DATA AVAILABLE
@@ -42,17 +49,25 @@ const navigate = useNavigate();
                 <th className="w-64">MOBILE NUMBER</th>
                 <th className="w-64">PHONE NUMBER</th>
                 <th className="w-64">POSTAL ADDRESS</th>
+                <th className="w-64">OPTIONS</th>
             </tr>
         </thead>
         <tbody>
-            {Clientdata.map(c => <tr className="odd:bg-white h-12 text-center" key={c.id}>
+            {clientData.map(c => <tr className="odd:bg-white h-12 text-center" key={c.id}>
                 <td className="w-64">{c.id}</td>                
                 <td className="w-64">{c.company_name}</td>
                 <td className="w-64">{c.contact_person_name}</td>
                 <td className="w-64">{c.email}</td>
                 <td className="w-64">{c.mobile_number}</td> 
                 <td className="w-64">{c.phone_number}</td> 
-                <td className="w-64">{c.postal_address}</td>                 
+                <td className="w-64">{c.postal_address}</td>
+                <td className="w-42 flex p-4 content-center justify-center">
+                    <button 
+                    className="px-4 bg-slate-500 py-2 rounded-lg text-white active:bg-slate-700" 
+                    onClick={() => navigate(`/clients/${c.id}/edit`)}>
+                        Edit
+                    </button>
+                </td>          
             </tr>)}
         </tbody>
       </table>

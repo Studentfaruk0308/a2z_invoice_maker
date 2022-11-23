@@ -64,12 +64,12 @@ export default function Invoices() {
                     <td className="w-64">{i.job_reference}</td> 
                     <td className="w-64">{i.description}</td>                 
                     <td className="w-64">{i.quantity}</td> 
-                    <td className="w-64">${i.unit_price.toFixed(2)}</td> 
-                    <td className="w-64">${(i.quantity*i.unit_price).toFixed(2)}</td>
-                    <td className="w-64">{i.tax}%</td>
-                    <td className="w-64">${(i.quantity*i.unit_price + i.quantity*i.unit_price*(i.tax/100)).toFixed(2)}</td> 
-                    <td className="w-64">${i.paid_amount.toFixed(2)}</td> 
-                    <td className="w-64">${(i.quantity*i.unit_price + i.quantity*i.unit_price*(i.tax/100) - i.paid_amount).toFixed(2)}</td> 
+                    <td className="w-64">$ {i.unit_price.toFixed(2)}</td> 
+                    <td className="w-64">$ {(i.quantity*i.unit_price).toFixed(2)}</td>
+                    <td className="w-64">{i.tax} %</td>
+                    <td className="w-64">$ {(i.quantity*i.unit_price + i.quantity*i.unit_price*(i.tax/100)).toFixed(2)}</td> 
+                    <td className="w-64">$ {i.paid_amount.toFixed(2)}</td> 
+                    <td className="w-64">$ {(i.quantity*i.unit_price + i.quantity*i.unit_price*(i.tax/100) - i.paid_amount).toFixed(2)}</td> 
                     <td className="w-42 flex p-4 content-center justify-center">
                         <button className="px-4 bg-slate-500 py-2 rounded-l-lg text-white active:bg-slate-700 border-r-2 border-gray-400" onClick={() => navigate(`/invoices/${i.id}`)}>View</button>
                         <button className="px-4 bg-slate-500 py-2 rounded-r-lg text-white active:bg-slate-700" onClick={() => navigate(`/invoices/${i.id}/edit`)}>Edit</button>

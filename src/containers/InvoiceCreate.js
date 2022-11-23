@@ -1,17 +1,60 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { createInvoice } from '../api/InvoicesApi'
+import { getClientsList } from '../api/ClientsApi'
 
 export default function InvoiceCreate(props) {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, watch, setValue, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
   const { user } = useAuth0();
 
+  const [clientData, setClientData] = useState(null)
+  const [loading, setLoading] = useState(true);
+
+  // only copy values once incase overwrite
+  const {state = {}} = useLocation();
+  const [copiedValues, setCopiedValues] = useState(false)
+
+  const { invoice } = state ?? {};
+
+  useEffect(() => {
+    async function fetchClientData(){
+        const data = await getClientsList()
+        setClientData(data)
+        setLoading(false)
+    }
+    fetchClientData()
+  }, [])
+
+  useEffect(() => {
+    if (invoice && !copiedValues) {
+      setValue('client_id', invoice?.client_id)
+      setValue('inv_number', invoice?.inv_number)
+      setValue('date_of_issue', invoice?.date_of_issue)
+      setValue('due_date', invoice?.due_date)
+      setValue('job_reference', invoice?.job_reference)
+      setValue('description', invoice?.description)
+      setValue('quantity', invoice?.quantity)
+      setValue('unit_price', invoice?.unit_price)
+      setValue('tax', invoice?.tax)
+      setValue('paid_amount', invoice?.paid_amount)
+      
+      setCopiedValues(true)
+    }
+  }, [invoice])
+
+  const unit_price = watch('unit_price') ?? 0;
+  const quantity = watch('quantity') ?? 1;
+  const tax = watch('tax') ?? 10
+  const paid_amount = watch('paid_amount') ?? 0
+  const sum_amount = unit_price * quantity
+  const total_amount = sum_amount + sum_amount * (tax/100)
+  const due_amount = total_amount - paid_amount
+
   const onSubmit = data => {
-    console.log(data)
     const response = createInvoice({...data, profile_id: user.sub.slice(6)});
 
     if (response.error) {
@@ -19,6 +62,10 @@ export default function InvoiceCreate(props) {
     } else {
       navigate('/invoices')
     }
+  }
+
+  if (loading) {
+    return <p>LOADING...</p>
   }
 
   const inputContainerStyle = 'mb-4'
@@ -33,8 +80,17 @@ export default function InvoiceCreate(props) {
 
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={`${inputContainerStyle}`}>
-        <p className={`${inputHeaderStyle}`}>CLIENT ID</p>
-        <input className={`${errors.client_id && errorInputStyle} ${inputStyle}`} type="text" placeholder="Client ID" {...register("client_id", {required: "Client ID is required"})}  />
+        <p className={`${inputHeaderStyle}`}>CLIENT</p>
+        <select 
+          id="client_id" 
+          name="client_id" 
+          className={`${errors.client_id && errorInputStyle} ${inputStyle}`} 
+          placeholder="Client ID" 
+          {...register("client_id", {required: "Client ID is required"})}>
+          {clientData.map(c => (
+            <option value={c.id}>{c.company_name}</option>
+          ))}
+        </select>
         {errors.client_id && <p className={`${errorStyle}`} role="alert">{errors.client_id?.message}</p>}
       </div>
 
@@ -81,9 +137,19 @@ export default function InvoiceCreate(props) {
       </div>
 
       <div className={`${inputContainerStyle}`}>
+        <p className={`${inputHeaderStyle}`}>Sum Amount</p>
+        <p>${sum_amount || "0"}</p>
+      </div>
+
+      <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Tax Amount</p>
         <input className={`${errors.tax && errorInputStyle} ${inputStyle}`} type="number" step=".01" placeholder="Tax" {...register("tax", {required: "Tax Amount is required", valueAsNumber: true, min: {value: 0, message: "Must not be negative"}})}  />
         {errors.tax && <p className={`${errorStyle}`} role="alert">{errors.tax?.message}</p>}
+      </div>
+
+      <div className={`${inputContainerStyle}`}>
+        <p className={`${inputHeaderStyle}`}>Total Amount</p>
+        <p>${total_amount || "0"}</p>
       </div>
 
       <div className={`${inputContainerStyle}`}>
@@ -91,9 +157,15 @@ export default function InvoiceCreate(props) {
         <input className={`${errors.paid_amount && errorInputStyle} ${inputStyle}`} type="number" step=".01" placeholder="Paid Amount" {...register("paid_amount", {required: "Paid Amount is required", valueAsNumber: true, min: {value: 0, message: "Must not be negative"}})}  />
         {errors.paid_amount && <p className={`${errorStyle}`} role="alert">{errors.paid_amount?.message}</p>}
       </div>
+      
+      <div className={`${inputContainerStyle}`}>
+        <p className={`${inputHeaderStyle}`}>Due Amount</p>
+        <p>${due_amount || "0"}</p>
+      </div>
 
       <input type="submit" className="bg-white rounded-xl px-4 py-2 mt-4 active:bg-slate-700" />
     </form>
+    <p className="text-rose-600">Clicking Submit will email the invoice to Client</p>
     </div>
   )
 }

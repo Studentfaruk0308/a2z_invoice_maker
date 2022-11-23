@@ -28,3 +28,15 @@ async function getClient(id) {
   }
   
   export {createClient}
+
+  async function updateClient(id, clientData){
+    return fetch(`${Config.baseURL}/clients/${id}`,{
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(clientData)
+    })
+  }
+  export {updateClient}

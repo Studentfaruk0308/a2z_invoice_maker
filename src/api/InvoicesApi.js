@@ -10,14 +10,11 @@ async function getInvoiceList(userId){
 }
 export {getInvoiceList}
 
-
-
 async function getInvoice(id){
   const response = await fetch(`${Config.baseURL}/invoices/${id}`);
   return response.json();
 }
 export {getInvoice}
-
 
 async function createInvoice(invoiceData){
     const response = await fetch(`${Config.baseURL}/invoices`,{
@@ -31,8 +28,6 @@ async function createInvoice(invoiceData){
 }
 export {createInvoice}
 
-
-
 async function updateInvoice(selectedInvoiceId, InvoiceCard){
     return fetch(`${Config.baseURL}/invoices/${selectedInvoiceId}`,{
       method: "PATCH",
@@ -44,6 +39,17 @@ async function updateInvoice(selectedInvoiceId, InvoiceCard){
     })
   }
   export {updateInvoice}
+
+  async function sendEmailInvoice(selectedInvoiceId){
+    return fetch(`${Config.baseURL}/invoices/${selectedInvoiceId}/emailsend`,{
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    })
+  }
+  export {sendEmailInvoice}
 
 
   async function deleteInvoice(selectedInvoiceId){
