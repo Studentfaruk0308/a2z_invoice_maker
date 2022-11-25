@@ -22,8 +22,8 @@ Following is the ideal system requirements to run the applicaiton smoothly:
 > Create an account in 'https://auth0.com/'
 > Create an Application and get Client ID.
 > Create a .env file in the root directory that exports the DOMAIN & CLIENT ID as per below example:
-        - REACT_APP_AUTH0_DOMAIN=<Domain Name goes here>
-        - REACT_APP_AUTH0_CLIENT_ID=<Client ID goes here>
+        - REACT_APP_AUTH0_DOMAIN=Domain Name goes here
+        - REACT_APP_AUTH0_CLIENT_ID=Client ID goes here
 > Add this file in .gitignore in the root directory to prevent the above two details being exposed to others in the Github Repository. 
 * Then type: 'npm start' to start the application and view it in your browser.
 * This frontend application will start in 'http://localhost:3010' by default.
