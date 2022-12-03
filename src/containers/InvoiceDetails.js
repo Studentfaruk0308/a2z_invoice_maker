@@ -40,7 +40,7 @@ export default function InvoiceDetails(props) {
   }
 
   return (
-    <div className="mx-auto bg-gray-300 mb-4 w-screen">
+    <div className="mx-auto mb-4 w-screen">
       <div ref={printingRef} className="px-12 py-12 flex flex-col min-h-screen">
           <div className='flex flex-col'>
                 {/* header details */}
@@ -57,7 +57,7 @@ export default function InvoiceDetails(props) {
                   </div>
                 </div>
 
-                <div className='flex bg-gray-200 rounded-lg px-4 my-8'>
+                <div className='flex bg-gray-200 rounded px-4 my-8'>
                   <div class='flex-auto'>
                       <p className='font-semibold'>Invoice Number: </p>
                       <p>{invoiceData.inv_number}</p>
@@ -77,7 +77,7 @@ export default function InvoiceDetails(props) {
                 </div>
 
                 {/* calculation */}
-                <div className=' bg-gray-200 rounded-lg pt-4 mb-8'>
+                <div className=' bg-gray-200 rounded pt-4 mb-8'>
 
                   <div className='flex justify-between px-4'>
                     <p className='font-bold mr-4 text-xl'>Item</p>
@@ -142,7 +142,7 @@ export default function InvoiceDetails(props) {
           </div>
 
               {/* profile address, footer content */}
-              <div className='flex flex-col grow justify-end bg-white rounded-lg'>
+              <div className='flex flex-col grow justify-end bg-white rounded'>
                 <p className='text-l text-center font-semibold'>ABN: {invoiceData.profile_details.abn}. Registered Office: {invoiceData.profile_details.address}</p>
               </div>
           </div>
@@ -150,10 +150,10 @@ export default function InvoiceDetails(props) {
           
 
               <div className='mb-12 mx-12'>
-              <button className="bg-white rounded-xl px-4 py-2 mt-4 active:bg-gray-700 mr-4" onClick={() => navigate(`/invoices/${invoiceData.id}/edit`)}>Edit</button>
-              <button className="bg-white rounded-xl px-4 py-2 mt-4 active:bg-gray-700 mr-4" onClick={() => navigate(`/invoices/create`, { state: {invoice: invoiceData}})}>Copy</button>
-              <button className="bg-white rounded-xl px-4 py-2 mt-4 active:bg-gray-700 mr-4" onClick={printInvoice}>Print Invoice</button>
-                <button className="bg-white rounded-xl px-4 py-2 mt-4 active:bg-gray-700" onClick={sendInvoice}>Send Invoice</button>
+              <button className="bg-gray-500 rounded px-4 py-2 mt-4 text-white active:bg-gray-700 mr-4" onClick={() => navigate(`/invoices/${invoiceData.id}/edit`)}>Edit</button>
+              <button className="bg-gray-500 rounded px-4 py-2 mt-4 text-white active:bg-gray-700 mr-4" onClick={() => navigate(`/invoices/create`, { state: {invoice: invoiceData}})}>Copy</button>
+              <button className="bg-gray-500 rounded px-4 py-2 mt-4 text-white active:bg-gray-700 mr-4" onClick={printInvoice}>Print Invoice</button>
+                <button className="bg-gray-500 rounded px-4 py-2 mt-4 text-white active:bg-gray-700" onClick={sendInvoice}>Send Invoice</button>
               </div>
 
     </div>

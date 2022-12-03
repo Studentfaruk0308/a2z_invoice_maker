@@ -28,9 +28,7 @@ function App() {
 
   if (isLoading || !isAuthenticated) {
     return (
-      <div className='w-screen h-screen flex justify-center align-middle bg-sky-500'>
-        <h1 className='m-auto text-6xl'>Loading...</h1>
-      </div>
+      <div className='flex grow h-screen justify-center content-center  animate-pulse'><p className='text-center m-auto text-4xl'>Loading...</p></div>
     )
   }
 

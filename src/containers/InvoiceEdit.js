@@ -45,14 +45,14 @@ export default function InvoiceEdit(props) {
     return <p>LOADING...</p>
   }
 
-  const inputContainerStyle = 'mb-4'
-  const inputHeaderStyle = 'mb-1 text-gray-800 font-medium'
-  const inputStyle = 'focus:border-1 rounded-lg border-1 px-4 py-2'
+  const inputContainerStyle = 'mb-8'
+  const inputHeaderStyle = 'mb-1 text-gray-800 font-semibold'
+  const inputStyle = 'focus:border-1 rounded border-gray-200 border-2 px-3 py-2 text-gray-800 w-96'
   const errorInputStyle = 'border-2 border-red-600'
   const errorStyle = 'text-red-600 text-sm mt-1 font-bold'
 
   return (
-    <div className="mx-auto bg-gray-300 pl-12 pr-56 py-12 rounded-lg my-4">
+    <div className="m-12">
     <h2 className="text-gray-800 text-3xl mb-6 font-semibold">Edit Invoice #{invoiceid}</h2>
 
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -139,7 +139,7 @@ export default function InvoiceEdit(props) {
         <p>${due_amount || "0"}</p>
       </div>
 
-      <input type="submit" className="bg-white rounded-xl px-4 py-2 mt-4 active:bg-gray-700" />
+      <input type="submit" className="bg-gray-500 rounded px-4 py-2 mt-4 text-white active:bg-gray-700 mb-4" />
     </form>
     <p className="text-rose-600">Clicking Submit will email the invoice to Client</p>
     </div>

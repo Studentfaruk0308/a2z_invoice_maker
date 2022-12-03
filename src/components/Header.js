@@ -8,9 +8,9 @@ function Header() {
   const { logout } = useAuth0();
 
   return (
-    <div className='flex w-full bg-gray-500 justify-between'>
+    <div className='flex w-full bg-gray-500 justify-between flex-wrap'>
         <NavLink className="px-8 hover:bg-gray-200 h-12 py-3" to="/"><p className='font-semibold text-white text-xl'>Invoice Generator</p></NavLink>
-        <div className='flex'>
+        <div className='flex flex-wrap'>
             <NavLink className="px-8 hover:bg-gray-200 h-12 py-3" to="/"><p className='font-medium text-white'>Home</p></NavLink>
             <NavLink className="px-8 hover:bg-gray-200 h-12 py-3" to="/invoices"><p className='font-medium text-white'>Invoices</p></NavLink>
             <NavLink className="px-8 hover:bg-gray-200 h-12 py-3" to="/clients"><p className='font-medium text-white'>Clients</p></NavLink>

@@ -28,7 +28,7 @@ export default function Invoices() {
 
   return (
     <div className=''>
-      <h2 className='text-2xl text-gray-800 font-semibold h-50'>Home</h2>
+      <h2 className='text-2xl text-gray-800 font-semibold h-50 text-center'>Home</h2>
       <div className="align-w-full grow flex flex-wrap">
           <div className='bg-gray-200 w-[32rem] h-96 rounded p-4 m-4 pb-12'>
               <h3 className='font-semibold text-lg pb-4 text-center'>Status of Recent FIVE Invoices</h3>

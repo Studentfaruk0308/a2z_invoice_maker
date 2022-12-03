@@ -43,7 +43,7 @@ export default function ProfileEdit(props) {
     return <p>LOADING...</p>
   }
 
-  const inputContainerStyle = 'mb-4'
+  const inputContainerStyle = 'mb-8'
   const inputHeaderStyle = 'mb-1 text-gray-800 font-semibold'
   const inputStyle = 'focus:border-1 rounded border-gray-200 border-2 px-3 py-2 text-gray-800 w-96'
   const errorInputStyle = 'border-2 border-red-600'
@@ -51,7 +51,7 @@ export default function ProfileEdit(props) {
 
   return (
     <div className="m-12">
-    <h2 className="text-gray-800 text-3xl mb-6 font-semibold">Profile</h2>   
+    <h2 className="text-gray-800 text-3xl mb-12 font-semibold">Profile</h2>   
 
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={`${inputContainerStyle}`}>
