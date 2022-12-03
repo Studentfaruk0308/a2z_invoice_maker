@@ -55,7 +55,7 @@ export default function BarChartSummary({invoices}) {
           data={data}
           margin={{
             top: 5,
-            right: 50,
+            right: 120,
             left: 5,
             bottom: 5,
           }}

@@ -27,21 +27,24 @@ export default function Invoices() {
   }
 
   return (
-    <div className="align-w-full p-4 grow flex flex-wrap">
-        <div className='bg-slate-300 m-50 w-96 h-96 rounded-lg p-4 m-4 pb-12'>
-            <h3 className='font-semibold text-lg pb-4 text-center'>Status of Recent FIVE Invoices</h3>
-            <BarChartRecent invoices={invoiceData}/>
-        </div>
+    <div className=''>
+      <h2 className='text-2xl text-gray-800 font-semibold h-50'>Home</h2>
+      <div className="align-w-full grow flex flex-wrap">
+          <div className='bg-gray-200 w-[32rem] h-96 rounded p-4 m-4 pb-12'>
+              <h3 className='font-semibold text-lg pb-4 text-center'>Status of Recent FIVE Invoices</h3>
+              <BarChartRecent invoices={invoiceData}/>
+          </div>
 
-        <div className='bg-slate-300 m-50 w-96 h-96 rounded-lg p-4 m-4'>
-            <h3 className='font-semibold text-lg text-center'>Number of Paid/Unpaid Invoices</h3>
-            <PieChartPaid invoices={invoiceData}/>
-        </div>
+          <div className='bg-gray-200 m-50 w-[32rem] h-96 rounded p-4 m-4'>
+              <h3 className='font-semibold text-lg text-center'>Number of Paid/Unpaid Invoices</h3>
+              <PieChartPaid invoices={invoiceData}/>
+          </div>
 
-        <div className='bg-slate-300 m-50 w-96 h-96 rounded-lg p-4 m-4 pb-12'>
-            <h3 className='font-semibold text-lg pb-4 text-center'>Funds Summary</h3>
-            <BarChartSummary invoices={invoiceData}/>
-        </div>
+          <div className='bg-gray-200 m-50 w-[32rem] h-96 rounded p-4 m-4 pb-12'>
+              <h3 className='font-semibold text-lg pb-4 text-center'>Funds Summary</h3>
+              <BarChartSummary invoices={invoiceData}/>
+          </div>
+      </div>
     </div>
   )
 }

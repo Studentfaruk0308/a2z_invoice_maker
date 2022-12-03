@@ -26,16 +26,16 @@ export default function Invoices() {
       </div>
   }
   return (
-    <div className="w-full bg-slate-300 pt-4">
+    <div className="w-full bg-gray-300 pt-4">
 
     <div className='flex justify-between align-middle'>
-        <h2 className="text-slate-800 text-3xl mb-6 font-semibold ml-6 text-center">List of All Invoices</h2>
-        <button className='bg-slate-500 rounded-xl text-m text-semibold text-white mx-4 px-4 active:bg-slate-700' onClick={() => navigate('/invoices/create')}>Create</button>
+        <h2 className="text-gray-800 text-3xl mb-6 font-semibold ml-6 text-center">List of All Invoices</h2>
+        <button className='bg-gray-500 rounded-xl text-m text-semibold text-white mx-4 px-4 active:bg-gray-700' onClick={() => navigate('/invoices/create')}>Create</button>
     </div>
 
       <table>
         <thead>
-            <tr className='h-12 border-b-4 border-b-slate-400'>
+            <tr className='h-12 border-b-4 border-b-gray-400'>
                 <th className="w-64">INVOICE ID</th>                       
                 <th className="w-64">INVOICE NUMBER</th>
                 <th className="w-64">CLIENT ID</th>
@@ -71,8 +71,8 @@ export default function Invoices() {
                     <td className="w-64">$ {i.paid_amount.toFixed(2)}</td> 
                     <td className="w-64">$ {(i.quantity*i.unit_price + i.quantity*i.unit_price*(i.tax/100) - i.paid_amount).toFixed(2)}</td> 
                     <td className="w-42 flex p-4 content-center justify-center">
-                        <button className="px-4 bg-slate-500 py-2 rounded-l-lg text-white active:bg-slate-700 border-r-2 border-gray-400" onClick={() => navigate(`/invoices/${i.id}`)}>View</button>
-                        <button className="px-4 bg-slate-500 py-2 rounded-r-lg text-white active:bg-slate-700" onClick={() => navigate(`/invoices/${i.id}/edit`)}>Edit</button>
+                        <button className="px-4 bg-gray-500 py-2 rounded-l-lg text-white active:bg-gray-700 border-r-2 border-gray-400" onClick={() => navigate(`/invoices/${i.id}`)}>View</button>
+                        <button className="px-4 bg-gray-500 py-2 rounded-r-lg text-white active:bg-gray-700" onClick={() => navigate(`/invoices/${i.id}/edit`)}>Edit</button>
                     </td>  
                 </tr>
             )}

@@ -43,19 +43,6 @@ async function updateInvoice(selectedInvoiceId, InvoiceCard){
   }
   export {updateInvoice}
 
-  
-  async function sendEmailInvoice(selectedInvoiceId){
-    return fetch(`${Config.baseURL}/invoices/${selectedInvoiceId}/emailsend`,{
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
-    })
-  }
-  export {sendEmailInvoice}
-
-
   async function deleteInvoice(selectedInvoiceId){
     return fetch(`http://localhost:3000/invoices/${selectedInvoiceId}`,{
       method: 'DELETE',

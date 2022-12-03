@@ -33,15 +33,15 @@ const [loading, setLoading] = useState(true);
   }
 
   return (
-    <div className="w-full bg-slate-300 pt-4">
+    <div className="w-full bg-gray-300 pt-4">
 
     <div className='flex justify-between align-middle'>
-        <h2 className="text-slate-800 text-3xl mb-6 font-semibold ml-6 text-center">List of all Clients</h2>
-        <button className='bg-slate-500 rounded-xl text-m text-semibold text-white mx-4 px-4 active:bg-slate-700' onClick={() => navigate('/clients/create')}>Create</button>
+        <h2 className="text-gray-800 text-3xl mb-6 font-semibold ml-6 text-center">List of all Clients</h2>
+        <button className='bg-gray-500 rounded-xl text-m text-semibold text-white mx-4 px-4 active:bg-gray-700' onClick={() => navigate('/clients/create')}>Create</button>
     </div>
       <table>
         <thead>
-            <tr className='h-12 border-b-4 border-b-slate-400'>
+            <tr className='h-12 border-b-4 border-b-gray-400'>
                 <th className="w-64">CLIENT ID</th>                
                 <th className="w-64">COMPANY NAME</th>
                 <th className="w-64">NAME OF CONTACT PERSON</th>
@@ -63,7 +63,7 @@ const [loading, setLoading] = useState(true);
                 <td className="w-64">{c.postal_address}</td>
                 <td className="w-42 flex p-4 content-center justify-center">
                     <button 
-                    className="px-4 bg-slate-500 py-2 rounded-lg text-white active:bg-slate-700" 
+                    className="px-4 bg-gray-500 py-2 rounded-lg text-white active:bg-gray-700" 
                     onClick={() => navigate(`/clients/${c.id}/edit`)}>
                         Edit
                     </button>
