@@ -136,7 +136,7 @@ export default function InvoiceEdit(props) {
 
       <div className={`${inputContainerStyle}`}>
         <p className={`${inputHeaderStyle}`}>Due Amount</p>
-        <p>${due_amount || "0"}</p>
+        <p className='text-3xl'>${due_amount || "0"}</p>
       </div>
 
       <input type="submit" className="bg-gray-500 rounded px-4 py-2 mt-4 text-white active:bg-gray-700 mb-4" />

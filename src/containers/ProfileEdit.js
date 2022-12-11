@@ -40,7 +40,7 @@ export default function ProfileEdit(props) {
   }
 
   if (loading) {
-    return <p>LOADING...</p>
+    return <div className='flex grow h-full justify-center content-center animate-pulse'><p className='text-center m-auto text-4xl'>Loading...</p></div>
   }
 
   const inputContainerStyle = 'mb-8'

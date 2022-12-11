@@ -7,6 +7,7 @@ import { getInvoiceList } from '../api/InvoicesApi'
 
 export default function Invoices() {
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true)
     const [Invoicedata, setInvoicedata] = useState(null)
   const { user } = useAuth0();
 
@@ -14,17 +15,19 @@ export default function Invoices() {
       async function fetchInvoiceData(){
           const data = await getInvoiceList(user.sub.slice(6))
           setInvoicedata(data)
+          setLoading(false)
       }
           fetchInvoiceData()
   }, [])
 
-  if (Invoicedata === null){
-      return<div>
-          <h1>
-              NO INVOICE DATA AVAILABLE
-          </h1>
-      </div>
+  if (loading) {
+    return <div className='flex grow h-full justify-center content-center animate-pulse'><p className='text-center m-auto text-4xl'>Loading...</p></div>
   }
+
+  if (Invoicedata === null || (Invoicedata?.length ?? 0) === 0){
+    return <div className='flex grow h-full justify-center content-center'><p className='text-center m-auto text-4xl'>No Invoices.</p></div>
+  }
+
   return (
     <div className="w-full bg-white pt-4">
 
@@ -69,7 +72,10 @@ export default function Invoices() {
                     <td className="w-64">{i.tax} %</td>
                     <td className="w-64">$ {(i.quantity*i.unit_price + i.quantity*i.unit_price*(i.tax/100)).toFixed(2)}</td> 
                     <td className="w-64">$ {i.paid_amount.toFixed(2)}</td> 
-                    <td className="w-64">$ {(i.quantity*i.unit_price + i.quantity*i.unit_price*(i.tax/100) - i.paid_amount).toFixed(2)}</td> 
+                    <td className="w-64">
+                        $ {(i.quantity*i.unit_price + i.quantity*i.unit_price*(i.tax/100) - i.paid_amount).toFixed(2)}
+                        {(i.quantity*i.unit_price + i.quantity*i.unit_price*(i.tax/100) - i.paid_amount).toFixed(2) > 0 && <div className='h-2 w-2 bg-red-300 rounded-full relative bottom-4 left-24 animate-ping'/>}
+                    </td> 
                     <td className="w-42 flex p-4 content-center justify-center">
                         <button className="px-4 bg-gray-500 py-2 rounded-l text-white active:bg-gray-700 border-r-2 border-gray-400" onClick={() => navigate(`/invoices/${i.id}`)}>View</button>
                         <button className="px-4 bg-gray-500 py-2 rounded-r text-white active:bg-gray-700" onClick={() => navigate(`/invoices/${i.id}/edit`)}>Edit</button>

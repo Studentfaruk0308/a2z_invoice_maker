@@ -23,13 +23,13 @@ export default function Invoices() {
   }, [])
 
   if (loading) {
-    return <p>LOADING...</p>
+    return <div className='flex grow h-full justify-center content-center animate-pulse'><p className='text-center m-auto text-4xl'>Loading...</p></div>
   }
 
   return (
     <div className=''>
-      <h2 className='text-2xl text-gray-800 font-semibold h-50 text-center'>Home</h2>
-      <div className="align-w-full grow flex flex-wrap">
+      <h2 className='text-2xl text-gray-800 font-semibold h-50 pt-8 pl-8'>Home</h2>
+      <div className="align-w-full grow flex flex-wrap p-4">
           <div className='bg-gray-200 w-[32rem] h-96 rounded p-4 m-4 pb-12'>
               <h3 className='font-semibold text-lg pb-4 text-center'>Status of Recent FIVE Invoices</h3>
               <BarChartRecent invoices={invoiceData}/>

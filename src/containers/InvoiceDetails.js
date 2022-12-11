@@ -30,7 +30,7 @@ export default function InvoiceDetails(props) {
     setLoading(true)
     const {created_at, updated_at, ...data} = invoiceData
     await updateInvoice(invoiceid, data);
-    alert("Email Sent!")
+    alert("Invoice Emailed to Client!")
     setLoading(false)
   }
 

@@ -20,16 +20,12 @@ const [loading, setLoading] = useState(true);
   }, [])
 
   if (loading) {
-    return <p>LOADING...</p>
+    return <div className='flex grow h-full justify-center content-center animate-pulse'><p className='text-center m-auto text-4xl'>Loading...</p></div>
   }
   
 
-  if (clientData === null){
-      return<div>
-          <h1>
-              NO CLIENT DATA AVAILABLE
-          </h1>
-      </div>
+  if (clientData === null || (clientData?.length ?? 0) === 0) {
+    return <div className='flex grow h-full justify-center content-center'><p className='text-center m-auto text-4xl'>No Clients.</p></div>
   }
 
   return (
